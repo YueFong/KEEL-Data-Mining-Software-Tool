@@ -1,0 +1,13 @@
+\beamer@endinputifotherversion {3.33pt}
+\beamer@sectionintoc {1}{INTRODUCTION}{3}{0}{1}
+\beamer@sectionintoc {2}{KEEL DESCRIPTION}{7}{0}{2}
+\beamer@sectionintoc {3}{KEEL-DATASET}{11}{0}{3}
+\beamer@subsectionintoc {3}{1}{Data sets webpages}{13}{0}{3}
+\beamer@subsectionintoc {3}{2}{Experimental study webpages}{15}{0}{3}
+\beamer@sectionintoc {4}{INTEGRATION OF NEW ALGORITHMS INTO THE KEEL TOOL}{17}{0}{4}
+\beamer@subsectionintoc {4}{1}{Introduction to the KEEL codification features}{18}{0}{4}
+\beamer@subsectionintoc {4}{2}{Encoding example using the “Steady-State Genetic Algorithm for Extracting Fuzzy Classification Rules From Data” method}{24}{0}{4}
+\beamer@sectionintoc {5}{STATISTICAL TOOLS AND EXPERIMENTAL STUDY}{32}{0}{5}
+\beamer@subsectionintoc {5}{1}{KEEL Statistical Tests}{34}{0}{5}
+\beamer@subsectionintoc {5}{2}{Case of study}{38}{0}{5}
+\beamer@sectionintoc {6}{CONCLUDING REMARKS}{52}{0}{6}

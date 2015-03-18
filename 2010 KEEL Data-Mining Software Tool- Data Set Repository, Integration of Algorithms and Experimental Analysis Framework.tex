@@ -108,11 +108,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[A Fuzzy Association Rule-Based Classification
-Model for High-Dimensional Problems With
-Genetic Rule Selection and Lateral Tuning]{A Fuzzy Association Rule-Based Classification
-Model for High-Dimensional Problems With
-Genetic Rule Selection and Lateral Tuning} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[KEEL Data-Mining Software Tool]{KEEL Data-Mining Software Tool: Data Set Repository, Integration of Algorithms and Experimental Analysis Framework} % The short title appears at the bottom of every slide, the full title is only on the title page
 
 \author{鍾岳峰} % Your name
 \institute[Yue-Fong,Chung] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -149,7 +145,6 @@ Genetic Rule Selection and Lateral Tuning} % The short title appears at the bott
 %第一章介紹
 %------------------------------------------------
 
-% A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 
 %提示％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％
 %****要做重點劃紅線可以用
@@ -161,37 +156,16 @@ Genetic Rule Selection and Lateral Tuning} % The short title appears at the bott
 %提示％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％％
 
 %------------------------------------------------
-
+%\subsection{INTRODUCTION}
 \begin{frame}
 	\frametitle{\insertsection : \insertsubsection}
 	
 	\begin{itemize}
-		\item FUZZY rule-based classification systems (FRBCSs) are useful and well-known tools in the machine learning framework, since they can provide an interpretable model for the end user . 
+		\item KEEL pays special attention to the implementation of evolutionary learning and soft computing based techniques for \textbf{Data Mining} problems including regression, classification, clustering, pattern mining and so on.
 		
-		\item Association discovery is one of the most common data mining techniques that are used to extract interesting knowledge from large datasets.
-		
-		\item Much effort has been made to use its advantages for classification under the name of associative classification.
+		\item The aim of this paper is to present \textbf{three new aspects of KEEL}: \textbf{KEEL-dataset}, a data set repository which includes the data set partitions in the KEEL format and shows some results of algorithms in these data sets;\textbf{ some guidelines for including new algorithms in KEEL}, helping the researchers to make their methods easily accessible to other authors and to compare the results of many approaches already included within the KEEL software; and \textbf{a module of statistical procedures developed} in order to provide to the researcher a suitable tool to contrast the results ob- tained in any experimental study.
 		
 	\end{itemize}
-	
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	\begin{itemize}
-		\item Both association discovery and classification rules mining are essential in practical data mining applications , and their integration could result in greater savings and convenience for the user.
-		\item A typical associative classification system is constructed in two stages:
-	\end{itemize}
-	\begin{block}{ }
-		
-		~\\
-		1) discovering the association rules inherent in a database; \\
-		2) selecting a small set of relevant association rules to construct a classifier.\\
-		~\\
-	\end{block}
 	
 \end{frame}
 
@@ -202,76 +176,35 @@ Genetic Rule Selection and Lateral Tuning} % The short title appears at the bott
 \begin{frame}
 	\frametitle{\insertsection : \insertsubsection}
 	\begin{itemize}
-		\item In this paper, we present a fuzzy association rule-based classification method for high-dimensional problems (FARC-HD) to obtain an accurate and compact fuzzy rule-based classifier with a low computational cost.
-		\item This method is based on the following three stages:
-	\end{itemize}
-	\begin{block}{ }
-		
-		~\\
-		1) Fuzzy association rule extraction for classification.\\
-		2) Candidate rule prescreening.\\
-		3) Genetic rule selection and lateral tuning\\
-		~\\
-	\end{block}
-	\begin{itemize}
-	\item In order to assess the performance of the proposed approach, we have used 26 real-world datasets with a number of variables ranging from 4 to 90 and a number of patterns ranging from 150 to 19,020.
+		\item \textbf{Data Mining (DM)} is the process for automatic discovery of high level knowledge by obtaining information from real world, large and complex data sets [26], and is the core step of a broader process, called \textbf{Knowledge Discovery from Databases (KDD)}.
+		\item \textbf{Evolutionary Algorithms (EAs)} [14] are optimization algorithms based on natural evolution and genetic processes.
+		\item They are currently considered to be one of \textbf{the most successful search techniques} for complex problems in \textbf{Artificial Intelligence}.
+		\item They have proven to be an important technique both for \textbf{learning and knowledge extraction}, making them a promising technique in DM [8, 16, 22, 24, 35, 46].
 	\end{itemize}
 \end{frame}
 
 %------------------------------------------------
-
-
-\section{PRELIMINARIES}
-\subsection{A.Fuzzy Rule-Based Classification Systems}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{\insertsection : \insertsubsection}
-	\begin{itemize}
-		\item Any classification problem consists of N training patterns, i.e., $\mathit{x}_{p}$ = ($\mathit{x}_{p1}$,...,$\mathit{x}_{pm}$), $\mathit{p}$ = 1,2,...,N, from S classes, where $\mathit{x}_{pi}$ is the $\mathit{i}$th attribute value ($\mathit{i}$ = 1,2,...,$\mathit{m}$) of the pth training pattern.
-		\item  In this paper, we use fuzzy rules of the following form for our classifier:
-	\end{itemize}
-	\begin{block}{ }
-~\\
-\centering\textbf{Rule ~$\mathit{R}_{j}$:IF~$\mathit{A}_{j1}$ and ··· and $\mathit{x}_{m}$ is $\mathit{A}_{jm}$}\\
-\centering\textbf{THEN Class = $\mathit{C}_{j}$ with $\mathit{RW}_{j}$}\\
-~\\
-\end{block}
-
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-
-	\begin{block}{ (1)}
-		~\\
-	\centering\textbf{${RW}_{\mathit{j}} = {CF}_{\mathit{j}}=\dfrac{\sum_{x_{p} \in ClassC_{j}}^{} {\mu A_{j}(x_{p})}}{\sum_{p=1}^{N} {\mu A_{j}(x_{p})}}$}\\
-		~\\
-	\end{block}
-		\begin{block}{ (2)}
-			~\\
-			\centering\textbf{${V}_{Class_\mathit{h}}(x_{p}) = \sum_{R_{j} \in RB ; R_{j}=\mathit{h}}^{} {\mu A_{j} (x_{p}) \bullet CF_{\mathit{j}}}$}\\
-		~\\
-		~~~~~~~~~~~~~	\textbf{$\mathit{h}=1,2,...,S,$~~~~$R_{\mathit{j}} \in RB.$}\\
-			
-			~\\
-		\end{block}
-	
-\end{frame}
-
-%------------------------------------------------
-
-
-\subsection{B.Fuzzy Association Rules}
 
 %------------------------------------------------
 
 \begin{frame}
 	\frametitle{\insertsection : \insertsubsection}
+	\begin{itemize}
+		\item In the last few years, \textbf{many DM software tools} have been developed. 
+		\item Only \textbf{a few are available} as open source software. 
+		\item \textbf{Open source tools} can play an important role as is pointed out in [39].
+		\item KEEL (Knowledge Extraction based on Evolutionary Learning) [5] is a \textbf{open source Java software tool} which empowers the user to assess the behavior of \textbf{evolutionary learning and Soft Computing} based techniques for different kinds of DM problems: \textbf{regression, classification, clustering, pattern mining and so on}.
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\section{KEEL DESCRIPTION} 
+%\subsection{DESCRIPTION}
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	The version of KEEL presently available consists of the following function blocks (see Fig. 1):
 \begin{center}
 \includegraphics[width=1\linewidth]{./1.png}
 \end{center}
@@ -282,58 +215,13 @@ Genetic Rule Selection and Lateral Tuning} % The short title appears at the bott
 
 \begin{frame}
 	\frametitle{\insertsection : \insertsubsection}
-	
-	\begin{block}{ (3)}
-		~\\
-		\centering\textbf{$Support(A\longrightarrow B)=\dfrac{\sum_{x_{p}\in T}^{ }{\mu {AB}(x_{p})}}{|N|}$}\\
-		~\\
+	\begin{block}{function blocks }
+	\begin{itemize}
+		\item Data Management
+		\item Design of Experiments
+		\item Educational Experiments
+	\end{itemize}
 	\end{block}
-	\begin{block}{ (4)}
-		~\\
-		\centering\textbf{$Confidence(A\longrightarrow B)=\dfrac{\sum_{x_{p}\in T}^{ }{\mu {AB}(x_{p})}}{\sum_{x_{p}\in T}^{ }{\mu {A}(x_{p})}}$}\\
-		~\\
-
-		~\\
-	\end{block}
-	
-\end{frame}
-
-%------------------------------------------------
-
-\subsection{C.Fuzzy Association Rules for Classification}
-
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	
-	\begin{block}{ (5)}
-		~\\
-		\centering\textbf{$Support(A\longrightarrow C_{j})=\dfrac{\sum_{x_{p}\in ClassC_{j}}^{ }{\mu A(x_{p})}}{|N|}$}\\
-		~\\
-	\end{block}
-	\begin{block}{ (6)}
-		~\\
-		\centering\textbf{$Confidence(A\longrightarrow C_{j})=\dfrac{\sum_{x_{p}\in ClassC_{j}}^{ }{\mu A(x_{p})}}{\sum_{x_{p}\in T}^{ }{\mu A(x_{p})}}$}\\
-		~\\
-		
-		~\\
-	\end{block}
-	
-\end{frame}
-
-%------------------------------------------------
-
-\section{FUZZY ASSOCIATION RULE-BASED CLASSIFIER FOR HIGH-DIMENSIONAL  PROBLEMS}
-\subsection{Stage 1. Fuzzy Association Rule Extraction for Classification}
-
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-\begin{center}
-\includegraphics[width=1\linewidth]{./2.png}
-\end{center}
 \end{frame}
 
 %------------------------------------------------
@@ -341,73 +229,108 @@ Genetic Rule Selection and Lateral Tuning} % The short title appears at the bott
 
 \begin{frame}
 	\frametitle{\insertsection : \insertsubsection}
-	
-	\begin{block}{ (7)}
-		~\\
-		\centering\textbf{$Support(A)=\dfrac{\sum_{x_{p}\in T}^{ }{\mu A(x_{p})}}{|N|}$}\\
-		~\\
-	\end{block}
-	\begin{block}{ (8)}
-		~\\
-		\centering\textbf{$MinimumSupport_{C_{j}}=minSup\ast \mathit{f}_{C_{j}}$}\\
-		~\\
-	\end{block}
-	
-\end{frame}
-
-%------------------------------------------------
-
-\subsection{Stage 2. Candidate Rule Prescreening}
-
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	
-	\begin{block}{ (9)}
-		~\\
-		\centering\textbf{$wWRAcc'  (A\longrightarrow C_{j})=\dfrac{n'(A)}{N'}\bullet(\dfrac{n'(A\bullet C_{j})}{n'(A)}-\dfrac{n(C_{j})}{N})$}\\
-		~\\
-	\end{block}
+	\begin{block}{main features of KEEL }
 		\begin{itemize}
-			\item N′ is the sum of the weights of all patterns.
-			\item n′(A) is the sum of the weights of all covered patterns .
-			\item n′(A · $C_{j}$ ) is the sum of the weights of all correctly covered patterns.
-			\item n($C_{j}$ ) is the number of patterns of class $C_{j}$.  
-			\item N is the number of all patterns. 
-			
+			\item  It presents \textbf{a large collection of EAs} for predicting models,\textbf{pre-processing  and post-processing}. 
+			\\It also contains some state-of-the-art methods for\textbf{ different areas of DM} such as\textbf{ decision trees, fuzzy rule based systems or interval rule-based learning}.
+			\item It has \textbf{a statistical library} to analyze results of algorthms.
+			\item Some algorithms have been developed using \textbf{Java Class Library for Evolutionary Computation (JCLEC)} [43].
+			\item The software is aimed at \textbf{creating experiments containing multiple data sets} and algorithms connected among themselves to \textbf{obtain an expected results}.
+			\item KEEL also allows \textbf{the creation of experiments in on-line mode}, aiming to provide an educational support in order to \textbf{learn the operation of the algorithm} included.
 		\end{itemize}
-	
+	\end{block}
 \end{frame}
 
 %------------------------------------------------
+\section{KEEL-DATASET} 
 %------------------------------------------------
 
 \begin{frame}
 	\frametitle{\insertsection : \insertsubsection}
+	\begin{block}{In this section we present the KEEL-dataset repository. }
+		\begin{itemize}
+			\item A detailed categorization of the considered data sets and a description of their characteristics. \textbf{Tables for the data sets in each category have been also created.}
+			\item A descriptions of the papers which have used the partitions of data sets available in the KEEL-dataset repository. These descriptions include \textbf{results tables, the algorithms used and additional material}.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+%------------------------------------------------
+\subsection{Data sets webpages}
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	The categories of the data sets have been derived from the topics addressed in the experimental studies.
 \begin{center}
-\includegraphics[height=.6\textheight]{./3.png}
+\includegraphics[ height=.75\textheight]{./2.png}
 \end{center}
 \end{frame}
 
 %------------------------------------------------
+%------------------------------------------------
 
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	\begin{block}{The categories in which the data sets are divided are the following: }
+		1.	Classification problems.
+		\begin{itemize}
+			\item Standard data sets.
+			\item Imbalanced data sets [6, 28, 41].
+			\item Multi instance data sets [12].
+			\item Data sets with missing values.
+		\end{itemize}
+		2.	Regression problems.\\
+		3.	Unsupervised (Clustering and Associations) problems.\\
+		4.	Low quality data [37].
+	\end{block}
+\end{frame}
+
+%------------------------------------------------
+\subsection{Experimental study webpages}
 %------------------------------------------------
 
 \begin{frame}
 	\frametitle{\insertsection : \insertsubsection}
 
-	\begin{block}{ i.e}
-		~\\
-		\centering\textbf{$R = IF~ X_{1}~ is~ [0.0,5.0[ ~and ~X_{2} ~is~ [5.0,10.0]~~ → C_{1}$}\\
-		~\\
-		\centering\textbf{$wWRAcc'  (R)=\dfrac{1.0+0.5}{1.0+1.0+0.0+1.0+0.5}\bullet(\dfrac{1.0+0.5}{1.0+0.5}-\dfrac{2}{5})$}\\
-		~\\
-		=~0.257.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		~\\
+	\begin{center}
+		\includegraphics[ height=.85\textheight]{./3.png}
+	\end{center}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{block}{Each paper can contain up to four links: }
+		These webpages contains \textbf{published journal publications} which use the correspondent kind of data sets in the repository.
+		\begin{itemize}
+			\item The first link is the PDF file of the paper.
+			\item The second link is the Bibtex reference of the paper.
+			\item At the bottom on the left link Data sets, algorithms and experimental results is always present. It references to the particular Keel-dataset webpage for such paper.
+			\item At the bottom on the right link Website associated to this paper is only present for some papers which have a particular and external webpage related with them.
+		\end{itemize}
+	Moreover, the results are detailed and listed in CSV and XLS (Excel) formatted files.
 	\end{block}
+\end{frame}
+
+%------------------------------------------------
+\section{INTEGRATION OF NEW ALGORITHMS INTO THE KEEL TOOL} 
+\subsection{Introduction to the KEEL codification features}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
 	
-	
+
+		\begin{itemize}
+			\item The KEEL philosophy tries to include the fewest possible constraints for the developer, in order to ease the inclusion of new algorithms within this tool.
+			\item We enumerate the list of details to take into account before codifying a method for the KEEL software, which is also detailed at the KEEL Reference Manual (http://www.keel.es/documents/KeelReferenceManualV1.0.pdf).
+		\end{itemize}
+
 \end{frame}
 
 %------------------------------------------------
@@ -417,252 +340,30 @@ Genetic Rule Selection and Lateral Tuning} % The short title appears at the bott
 \begin{frame}
 	\frametitle{\insertsection : \insertsubsection}
 	
-	\begin{block}{ (10)}
-		~\\
-		\centering\textbf{$wWRAcc''  (A\longrightarrow C_{j})=\dfrac{n''(A\bullet C_{j})}{n'(C_{j})}\bullet(\dfrac{n''(A\bullet C_{j})}{n''(A)}-\dfrac{n(C_{j})}{N})$}\\
-		~\\
-	\end{block}
-{\small 		\begin{itemize}
-			\item n"(A) is the sum of the products of the weights of all covered patterns by their matching degrees with the antecedent part of the rule.
-			\item n"(A · $C_{j}$ ) is the sum of the products of the weights of all correctly covered patterns by their matching degrees with the antecedent part of the rules.
-			\item n′($C_{j}$ ) is the sum of the weights of patterns of class $C_{j}$.
-			\item Moreover, the first term
-			in the definition of wWRAcc′ has been replaced by $\dfrac{n''(A\bullet C_{j})}{n'(C_{j})}$ to reward rules that cover uneliminated patterns of class $C_{j}$ .
-		\end{itemize}}
 	
-\end{frame}
-
-%------------------------------------------------
-
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-
-	\begin{block}{i.e }
-	~\\
-		\centering\textbf{$wWRAcc"  (R)=\dfrac{1.0\ast1.0+0.5\ast0.5}{1.0+0.5}\bullet(\dfrac{1.0\ast1.0+0.5\ast0.5}{1.0\ast1.0+0.5\ast0.5}-\dfrac{2}{5})$}\\
-		~\\
-		=~0.5.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		~\\
-	\end{block}
+	\begin{itemize}
+		\item The programming language used is Java.
+		\item In KEEL,every method uses a configuration file to extract the values of the parameters which will be employed during its execution.
+	\end{itemize}
+		\begin{block}{Each configuration file has the following structure: }
 			\begin{itemize}
-				\item This measure can obtain positive or negative values in the interval \\~ [ - 1.0, 1.0]. 
-				\item A rule with a wWRAcc" value near to 1 may be more useful for the classification.
+				\item algorithm: Name of the method.
+				\item inputData: A list with the input data files of the method.
+				\item outputData: A list with the output data files of the method.
+				\item parameters: A list of parameters of the method, containing the name of each parameter and its value (one line is employed for each one).
 			\end{itemize}
-	
-\end{frame}
-
-%------------------------------------------------
-
-\subsection{Stage 3. Rule Selection and Lateral Tuning}
-
-%------------------------------------------------
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-
-\begin{center}
-\includegraphics[height=.6\linewidth]{./4.png}
-\end{center}
-\end{frame}
-%------------------------------------------------
-
-%------------------------------------------------
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	
-\begin{center}
-\includegraphics[height=.65\textheight]{./5.png}
-\end{center}
-\end{frame}
-%------------------------------------------------
-
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	
-		\begin{itemize}
-			\item Fig. 3.
-			of the involved MF. (a) Simbolic translation of a linguistic term. (b) Lateral displacement of an MF.
-		\end{itemize}
-	\begin{block}{Classic Rule: }
-		~\\
-		\centering\textbf{$IF ~X_{1}~ is ~Low ~and~ X_{2}~ is~ Middle $}\\
-			\centering\textbf{$THEN~ Class~ is~ C_{1}$}\\
-		~\\
-
-	\end{block}
-		\begin{block}{Two-Tuple Representation:}
-			~\\
-			\centering\textbf{$IF ~X_{1}~ is~ (Low, 0.1)~ and ~X_{2}~ is~ (Middle, -0.3)$}\\
-			\centering\textbf{$THEN ~Class~ is~C_{1} .$}\\
-			~\\
-
 		\end{block}
-
 	
 \end{frame}
 
 %------------------------------------------------
-
 %------------------------------------------------
 
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	the main characteristics of the genetic approach that combines rule selection and lateral tuning are presented:
-	\begin{itemize}
-		\item  genetic model
-		\item codification
-		\item initial gene pool
-		\item chromosome evaluation
-		\item crossover operator
-		\item restarting approach
-	\end{itemize}
-	\begin{block}{ }
-		~\\
-		\textbf{1) CHC Genetic Model}\\
-		\textbf{2) Codification and Initial Gene Pool}\\
-		\textbf{3) Chromosome Evaluation}\\
-		\textbf{4) Crossover Operator}\\
-		~\\
-	\end{block}
-
-\end{frame}
-
-%------------------------------------------------
-
-%------------------------------------------------
 \begin{frame}
 	\frametitle{\insertsection : \insertsubsection}
 	
-	\begin{center}
-		\includegraphics[height=.65\textheight]{./6.png}
-	\end{center}
-\end{frame}
-%------------------------------------------------
-
-\subsection{Flowchart}
-
-%------------------------------------------------
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	
-	\begin{center}
-		\includegraphics[height=.65\textheight]{./7.png}
-	\end{center}
-\end{frame}
-%------------------------------------------------
-%------------------------------------------------
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	
-	\begin{center}
-		\includegraphics[height=.65\textheight]{./8.png}
-	\end{center}
-\end{frame}
-%------------------------------------------------
-
-\section{EXPERIMENTAL SETUP}
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	Several experiments have been carried out in this paper to evaluate the usefulness of our proposal.
-	\begin{itemize}
-		\item we describe the real-world databases that are used in these experiments.
-		\item we introduce a brief description of the methods considered for comparison.
-		\item we show the configuration of the methods (determining all the parameters used).
-		\item we describe the statistical analysis that is adopted in this study.
-	\end{itemize}
-\end{frame}
-
-%------------------------------------------------
-\subsection{A.Datasetst}
-
-%------------------------------------------------
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	
-	\begin{center}
-		\includegraphics[height=.7\textheight]{./9.png}
-	\end{center}
-\end{frame}
-%------------------------------------------------
-
-\subsection{B.Methods Considered for Comparison}
-
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	In these experiments, we compare the proposed approach with other ten methods, which are available in the Knowledge Extraction based on Evolutionary Learning (KEEL) software tool [61].
-{\footnotesize 	\begin{itemize}
-		\item C4.5 [39]
-		\item Classification based on associations (CBA) [12]
-		\item CBA2 [13]
-		\item Classification based on multiple association rules (CMAR) [14]
-		\item Structural learning algorithm on vague environment (2SLAVE) [64]
-		\item Learning algorithm to discover fuzzy association rules for classification (LAFAR) [24]
-		\item Classification based on predictive association rules (CPAR) [15]
-		\item Fuzzy hybrid genetic-based machine learning algo- rithm (FH-GBML) [66]
-		\item Steady-state GA for extracting fuzzy classification rules
-from data (SGERD) [67]
-		\item Classification with fuzzy association rules (CFAR) [27]
-	\end{itemize}}
-\end{frame}
-
-%------------------------------------------------
-
-\subsection{C.Parameters of the Methods}
-
-%------------------------------------------------
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	
-	\begin{center}
-		\includegraphics[height=.7\textheight]{./10.png}
-	\end{center}
-\end{frame}
-%------------------------------------------------
-
-\subsection{D.Statistical Analysis}
-
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	\begin{itemize}
-			\item We use α = 0.05 as the level of confidence in all cases. 
-			\item A wider description of these tests, together with software for their use, can also be found at: http://sci2s.ugr.es/sicidm/
-	\end{itemize}
-	\begin{center}
-				\includegraphics[height=.7\textheight]{./11.png}
-	\end{center}
-\end{frame}
-	
-%------------------------------------------------
-
-
-\section{EXPERIMENTAL RESULTS}
-\subsection{A.Comparison With Other Genetic Fuzzy Systems}
-
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	\begin{center}
-		\includegraphics[height=.75\textheight]{./12.png}
-	\end{center}
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
 \begin{center}
-\includegraphics[width=1\linewidth]{./13.png}
+\includegraphics[width=1\linewidth]{./4.png}
 \end{center}
 \end{frame}
 
@@ -671,45 +372,14 @@ from data (SGERD) [67]
 
 \begin{frame}
 	\frametitle{\insertsection : \insertsubsection}
-	\begin{center}
-		\includegraphics[width=1\textheight]{./14.png}
-	\end{center}
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	\begin{center}
-		\includegraphics[width=1\textheight]{./15.png}
-	\end{center}
-\end{frame}
-
-%------------------------------------------------
-
-\subsection{B.Comparison With Other Fuzzy Associative Classifiers}
-
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	\begin{center}
-		\includegraphics[height=.75\textheight]{./16.png}
-	\end{center}
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
+	
+	
 	\begin{itemize}
-		\item The results obtained by these methods are shown in Table VIII. 
-		\item Notice that we show less datasets; this is due to scalability problems in the LAFAR and CFAR algorithms, which cannot run in all datasets.
-		\item On the other hand, the results presented in Table VIII show that our approach obtains an average number of rules lower than the LAFAR and CFAR algorithms.
-		\item However, the CFAR algorithm obtains less rules than our approach in 11 of the 18 datasets.
+		\item The input data-sets follow a specific format that \textbf{extends the “arff” files} by completing \textbf{the header with more metadata information} about the attributes of the problem.
+		\item The output format consists of a header,which\textbf{ follows the same scheme }as the input data, and two columns with the output values for each example separated by a whitespace.
 	\end{itemize}
+
+	
 \end{frame}
 
 %------------------------------------------------
@@ -717,116 +387,124 @@ from data (SGERD) [67]
 
 \begin{frame}
 	\frametitle{\insertsection : \insertsubsection}
-	\begin{center}
-		\includegraphics[width=1\textheight]{./17.png}
-	\end{center}
-	In order to compare the two algorithms, we use a Wilcoxon test, which is shown in Table IX.
-\end{frame}
-
-%------------------------------------------------
-
-\subsection{C.Comparison With Classical Approaches}
-
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	\begin{center}
-		\includegraphics[height=.75\textheight]{./18.png}
-	\end{center}
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	\begin{center}
-		\includegraphics[width=1\textheight]{./19.png}
-	\end{center}
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	\begin{center}
-		\includegraphics[width=1\textheight]{./20.png}
-	\end{center}
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	\begin{center}
-		\includegraphics[width=1\textheight]{./21.png}
-	\end{center}
-\end{frame}
-
-%------------------------------------------------
-
-\subsection{D.Analysis of the Influence of $Depth_{max}$ and the Number of Evaluations}
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	ANALYSIS OF THE PERFORMANCE DEPENDING ON $Depth_{max}$
-	\begin{center}
-		%\includegraphics[width=1\textheight]{./22.png}
-		\includegraphics[height=.75\textheight]{./22-1.png}
-	\end{center}
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	\begin{center}
-		\includegraphics[width=1\textheight]{./23.png}
-	\end{center}
-\end{frame}
-
-%------------------------------------------------
-
-\subsection{E.Analysis of Scalability}
-
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-	\begin{center}
-		\includegraphics[width=1\textheight]{./24.png}
-	\end{center}
-\end{frame}
-
-%------------------------------------------------
-%------------------------------------------------
-
-\begin{frame}
-	\frametitle{\insertsection : \insertsubsection}
-
-	\begin{block}{By the analysis of the results presented in Table XV, we can draw the following conclusions. }
-		~\\
+	
+	
 	\begin{itemize}
-		\item The SGERD algorithm presents a very low average runtime in all datasets.
-		\item The 2SLAVE,FH-GBML,LAFAR ,and CFAR algorithms expend a large amount of time .\\ (Notice that the CFAR and LAFAR cannot run in 7 and 18 of the 26 datasets, respectively.)
-		\item our proposal obtains the best ranking in Fried- man’s test .
-		\item Notice that the CBA and CBA2 algorithms present similar runtimes to the CMAR and CPAR algorithms.
-		\item The FARC-HD approach presents a good computational cost in all datasets.
+		\item Although the list of constraints is short, the KEEL development team have created a simple template that \textbf{manages all these features}.
 	\end{itemize}
-		~\\
+	\begin{block}{Our KEEL template includes four classes}
+		\begin{itemize}
+{\small 		\item \textbf{Main}: This class contains the main instructions for launching the algorithm. 
+			\item \textbf{ParseParameters}: This class manages all the parameters, from the input and output files, to every single parameter stored in the parameters file.
+			\item \textbf{myDataset}: This class is an interface between the classes of the API data-set and the algorithm.
+			\item \textbf{Algorithm}: This class is devoted to storing the main variables of the algorithm and to naming the different procedures for the learning stage.}
+		\end{itemize}
 	\end{block}
 	
 \end{frame}
 
 %------------------------------------------------
+%------------------------------------------------
 
-\section{CONCLUDING REMARKS}
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	
+	\begin{itemize}
+		\item The template can be downloaded following the link \textbf{http://www.keel.es/software/KEEL\_template.zip}, which additionally supplies the user with the whole API data-set together with the classes for managing files and the random number generator.
+	\end{itemize}
+	
+\end{frame}
 
+%------------------------------------------------
+\subsection{Encoding example using the “Steady-State Genetic Algorithm for Extracting Fuzzy Classification Rules From Data” method}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	
+	\begin{itemize}
+		\item We will show \textbf{how this template enables the programming within KEEL} to be straightforward, since the \textbf{user does not need to pay attention to the specific KEEL constraints} because they are completely covered by the functions\textbf{ implemented in the template.}
+		\item To illustrate this, we have selected one classical and simple method, the SGERD procedure [33].
+	\end{itemize}
+	
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	
+	\begin{itemize}
+		\item Neither the \textbf{Main} nor the \textbf{ParseParameters }classes need to be modified, and we just need\textbf{ to focus }our attention on\textbf{ the Algorithm class }and the inclusion of \textbf{two new functions in myDataset}. 
+		\item We enumerate below the steps for adapting this class to this specific algorithm:
+	\end{itemize}
+	
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+		\begin{block}{1.}
+	\begin{itemize}
+		\item we must store all the parameters values with in the constructor of the algorithm. Each parameter is selected with the \textbf{getParameter} function using its corresponding position in the parameter file, whereas the optional output files are obtained using the function \textbf{getOutputFile}. 
+		\item Furthermore, the constructor must check the capabilities of the algo- rithm, related to the data-set features, that is, whether it has missing values, real or nominal attributes, and so on.
+	\end{itemize}
+\end{block}
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{block}{2.}
+		\begin{itemize}
+			\item we execute the main process of the algorithm(procedure execute). 
+			\item If everything is alright, we perform the algorithm’s operations.
+			\item In the case of the SGERD method we must first build the Data Base (DB) and then generate an initial Rule Base (RB).
+			\item Next, the GA is executed in order to find the best rules in the system.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{block}{3.}
+		\begin{itemize}
+			\item We write in an output file the DB and the RB to save the generated fuzzy model, and then we continue with the classification step for both the validation and test files.
+			\item The \textbf{doOutput} procedure simply iterates all examples and returns the predicted class as a string value (in regression problems it will return a double value). 
+			\item This prediction is carried out in the \textbf{classificationOutput }function, which only runs the Fuzzy Reasoning Method of the generated RB (noted in boldface)
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{block}{4.}
+		\begin{itemize}
+			\item Finally, we show the new functions that are implemented in the \textbf{myDataset} class in order to obtain some necessary information from the training data during the rule learning stage. 
+			\item We must point out that the remaining functions of this class remain unaltered.
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+%------------------------------------------------
 %------------------------------------------------
 
 \begin{frame}
@@ -834,346 +512,305 @@ from data (SGERD) [67]
 	
 
 		\begin{itemize}
-			\item In this paper, we have proposed a new fuzzy associative clas- sification method for high-dimensional datasets, named FARC-HD.
-			\item Our aim was to obtain accurate and compact fuzzy asso- ciative classifiers with a low computational cost.
-			\item Finally, the limit in the depth of the trees, along with candidate rule prescreening using the fuzzy measure wWRACC", allows us to reduce the search space considerably.
+			\item Once the algorithm has been implemented, it can be executed directly on a terminal with the parameters file as an argument.
+			\item Nevertheless, when included within the KEEL software, the user can create a complete experiment with automatically generated scripts for a batch-mode execution.
+			\item Furthermore, we must clarify that the “validation file” is used when an instance- selection preprocessing step is performed, and contains the original training set data; hence, the training and validation files match up in the remaining cases.
 		\end{itemize}
 
 	
 \end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	
+	\begin{itemize}
+		\item Finally, we should point out that the complete source code for the SGERD method (together with the needed classes for the fuzzy rule generation step)
+can be downloaded at \textbf{http://www.keel.es/software/SGERD\_source. zip}.
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+\section{STATISTICAL TOOLS AND EXPERIMENTAL STUDY} 
 
 %------------------------------------------------
 
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.1 Fuzzy Measures}
-%A set function g defined on \Large $\mathscr{B}$ \normalsize that has the following properties is called a {\color{red}fuzzy measure}:\\
-%\begin{block}{Definition 4-1}
-%
-%~\\
-%1. g(0)=0,g(X)=1.\\
-%2. If A,B $\in$\Large $\mathscr{B}$\normalsize~ and A$ \subseteq $B,then g(A) $\leq$ g(B).\\
-%3. If $A_{n}~\in$ \Large $\mathscr{B}$\normalsize,$A_{1} \subseteq A_{2} \subseteq$...,then $ \lim_{n \rightarrow  \infty } $($A_{n}$)=g($ \lim_{n \rightarrow  \infty } A_{n}$).\\
-%~\\
-%\end{block}
-%Sugeno's measure differs from the classical measure essentially by relaxing the additivity property [Murofushi and Sugeno 1989, p. 201].\\
-%A different approach,however, is used by Klement and Schwyhla [1982].\\
-%The interested reader is referred to their article.
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.1 Fuzzy Measures}
-%Banon [1981] shows that very many measures with finite universe, such as probability measures, belief functions, plausibility measures, and so on, are fuzzy measures in the sense of Sugeno. \\
-%For this book, one measure-possibility-is of particular interest [see Dubois and Prade 1988a, p.7].\\
-%In the framework of fuzzy set theory, Zadeh introduced {\color{red}the notion of a possibility distribution and the concept of a possibility measure}, which is a special type of the fuzzy measure proposed by Sugeno. \\
-%A possibility measure is defined as follows [Zadeh 1978; Higashi and Klir 1982]:
-%
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.1 Fuzzy Measures}
-%Let P(X) be the power set of a set X.\\
-%A possibility measure is a function $ \Pi $: P(X) $ \mapsto $ [0, 1] with the properties\\
-%\begin{block}{Definition 4-2}
-%l. $ \Pi $(0)=0,$ \Pi $(X)=1\\
-%2. A $ \subseteq $ B $ \Rightarrow  \Pi   $(A) $\leq \Pi $(B)\\
-%3. $\Pi$ ($U_{i \in I}A_{i}$ ) = $sup_{i\in I} \Pi$ ($A_{i}$) with an index set I.
-%~\\
-%\end{block}
-%It can be uniquely determined by a possibility distribution function f: X $ \rightarrow $ [0, 1] by$\Pi$(A)=$sup_{x \in A}f$ f(x),A $\subset$ X.\\
-%It follows directly that f is defined by f(x) =$\Pi$(\{x\})$\forall_x \in X$ ~[Klir and Folger 1988, p. 122].\\
-%A possibility is not always a fuzzy measure [Puri and Ralescu 1982].\\
-%It is, however, a fuzzy measure if X is finite and if the possibility distribution is normal-that is, a mapping into [0, 1].
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.1 Fuzzy Measures}
-%
-%\begin{block}{Example 4-1}
-%Let X = {0, 1, . . . , 10} .\\
-%$\Pi$(\{x\}) : = Possibility that x is close to 8.\\
-%~\\
-%\begin{table}[h]
-%\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}
-%\hline
-%x  & 0  & 1  & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
-%$\Pi$(\{x\}) & .0 & .0 & .0  & .0  & .0 & .1 & .5 & .8 & 1 & .8 & .5 \\ \hline
-%\end{tabular}
-%\end{table}
-%~\\
-%$\Pi$(A): = Possibility that A contains an integer close to 8.\\
-%A $\subset$~X$~ \Longrightarrow~$ $\Pi$(A) = $sup_{x \in A}$ $\Pi$(\{x\}) \\
-%For A = {2, 5, 9} we compute:\\
-%$\Pi$(A) = $sup_{x \in A}$ $\Pi$(\{x\}) \\
-%= sup\{$\Pi$(\{2\}), $\Pi$(\{5\}), $\Pi$(\{9\})\} \\
-%= sup\{0, .1, .8\}\\
-%=.8\\
-%~\\
-%~\\
-%\end{block}
-%
-%\end{frame}
-%
-%%------------------------------------------------
-%
-%%\subsection{4.2 Measures of Fuzziness} 
-%
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%
-%\begin{itemize}
-%\item Measures of fuzziness, in contrast to fuzzy measures, try to indicate {\color{red}the degree of fuzziness of a fuzzy set.} 
-%\item A number of approaches to this end have become known. 
-%\item Some authors, strongly influenced by the \textbf{Shannon entropy} as a measure of information, and following de Luca and Termini [1972], consider a measure of fuzziness as {\color{red}a mapping \textbf{d} from the power set P(X) to [0, +\(\infty \)] that satisfies a number of conditions}.
-%
-%\item Others [Kaufmann 1975] suggested an index of fuzziness as a \textbf{normalized distance}, and others [Yager 1979; Higashi and Klir 1982] base their concept of a measure of fuzziness on \textbf{the degree of distinction between the fuzzy set and its complement}.
-%
-%\end{itemize}
-%
-%\end{frame}
-%
-%%------------------------------------------------
-%
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%We shall, as an illustration, discuss two of those measures.\\
-%Suppose for both cases that \textbf{the support of A is finite}.\\
-%~\\
-%The first is as follows : Let $\mu_{\tilde{A}}(x)$ be the membership function of the fuzzy set $\tilde{A}$ for $x \in X$, X finite. It seems plausible that the measure of fuzziness d($\tilde{A}$) should then have the following properties [de Luca and Termini 1972]:\\
-%\begin{block}{}
-%\begin{itemize}
-%\item1. d($\tilde{A}$) = 0 if $\tilde{A}$ is a crisp set in X.
-%\item2. d($\tilde{A}$) assumes a unique maximum if $\mu_{\tilde{A}}(x)$ = $ \frac{1}{2} \forall x \in X$.
-%\item3. d($\tilde{A}) \geq  d(\tilde{A'}$) if $\tilde{A'}$ is "crisper" than $\tilde{A}$, i.e., if $\mu_{\tilde{A'}}(x) \leq$ $\mu_{\tilde{A}}(x)$ for $\mu_{\tilde{A}}(x) \leq \frac{1}{2}$ and  $\mu_{\tilde{A'}}(x) \geq$ $\mu_{\tilde{A}}(x)$ for $\mu_{\tilde{A}}(x) \geq \frac{1}{2}$. 
-%\item4. d(¢$\tilde{A}$) = d($\tilde{A}$) where ¢$\tilde{A}$ is the complement of $\tilde{A}$.
-%\end{itemize}
-%\end{block}
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%De Luca and Termini suggested as a measure of fuzziness the {\color{red}"entropy"} of a fuzzy set [de Luca and Termini 1972, p. 305], which they defined as follows :\\
-%\begin{block}{Definition 4-3a}
-%The entropy as a measure of a fuzzy set $\tilde{A}$ = \{(x, $\mu_{\tilde{A}}(x))$\} is defined as\\
-%~\\
-%\centering\textbf{d($\tilde{A}$) = H($\tilde{A}$) + H(¢$\tilde{A}$), x $\in$ X}\\
-%\centering\textbf{H($\tilde{A}$) = - K$\sum_{i=1}^n \mu_{\tilde{A}}(x_{i})ln(\mu_{\tilde{A}}(x_{i}))$}\\
-%~\\
-%\end{block}
-%where \textbf{n} is the number of elements in the support of $\tilde{A}$ and K is a positive constant.
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%Using \textbf{Shannon's function S(x)=-xlnx-(1-x)ln(1-x)}, de Luca and Termini simplify the expression in definition 4-3a to arrive at the following definition.\\
-%\begin{block}{Definition 4-3b}
-%The entropy d as a measure of fuzziness of a fuzzy set $\tilde{A}$ = \{x, $\mu_{\tilde{A}}(x)$\} is defined as\\
-%~\\
-%\centering\textbf{d($\tilde{A}$) = K$\sum_{i=1}^n S(\mu_{\tilde{A}}(x_{i}))$}\\
-%~\\
-%\end{block}
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%\begin{block}{Example 4-2}
-%Let $\tilde{A}$= "integers close to 10" (see example 2-1d)\\
-%~~~~~~~~~~~~$\tilde{A}$ = \{(7, .1), (8, .5), (9, .8), (10, 1),(11, .8), (12, .5), (13,.1)\}\\
-%Let K = 1, so\\
-%~~~~~~~~~~~~d($\tilde{A}$) = .325+.693+.501+0+.501+.693+.611+.325=3.038\\
-%~\\
-%Furthermore, let $\tilde{B}$ ="integers quite close to 10"\\
-%~~~~~~~~~~~~$\tilde{B}$ = \{(6,.1),(7,.3),(8,.4),(9,.7),(10,1),(11,.8),(12,.5),(13,.3),(14,.l)\}\\
-%~~~~~~~~~~~~d($\tilde{B}$) = .325 +.611+.673+.611+0+.501+.693+.611+.325=4.35
-%\end{block}
-%
-%\begin{block}{Shannon's function \textbf{S(x)=-xlnx-(1-x)ln(1-x)}}
-%\centering\textbf{$\mu_{\tilde{A}}(x)$=0.1,\\
-%-$\mu_{\tilde{A}}(x)$ln($\mu_{\tilde{A}}(x)$)-(1-$\mu_{\tilde{A}}(x)$)ln(1-$\mu_{\tilde{A}}(x)$)\\
-%=-0.1ln(0.1)-(1-0.1)ln(1-0.1)\\
-%$ \approx $0.325}\\
-%\end{block}
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%The second measure is as follows: Knopfmacher [1975], Loo [1977], Gottwald [1979b], and others based their contributions on the Luca and Termini's suggestion in some respects.\\
-%~~\\
-%If $\tilde{A}$ is a fuzzy set in X and ¢$\tilde{A}$ is its complement, then in contrast to crisp sets, \textbf{it is not necessarily true} that\\
-%\begin{block}{}
-%~\\
-%~\\
-%\centering\textbf{$\tilde{A}~  \cup$  ¢$\tilde{A}$ = X}\\
-%\centering\textbf{$\tilde{A}~  \cap$~~¢$\tilde{A}$ = \(\phi\) }\\
-%~\\
-%\end{block}
-%This means that \textbf{fuzzy sets do not always satisfy the law of the excluded middle}, which is one of their major distinctions from traditional crisp sets. \\
-%~~\\
-%Some authors [Yager 1979; Higashi and Klir 1982] consider the relationship between $\tilde{A}$ and ¢$\tilde{A}$ to be the essence of fuzziness.
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%Yager [1979] notes that the requirement of distinction between $\tilde{A}$ and ¢$\tilde{A}$ \textbf{is not satisfied by fuzzy sets}.
-%\\
-%He therefore suggests that any measure of fuzziness \textbf{should be a measure of the lack of distnction between $\tilde{A}$ and ¢$\tilde{A}$ or $\mu_{\tilde{A}}(x)~ and~ \mu_{~~~¢\tilde{A}}(x)$}.\\
-%As a possible metric to measure the distance between a fuzzy set and its complement, Yager suggests:\\
-%\begin{block}{Definition 4-4}
-%~\\
-%~\\
-%\centering\textbf{\(D_{p}( \tilde{A},~~¢\tilde{A}) = [~ \sum_{i=1}^n   | \mu_{\tilde{A}}( x_{i}) - \mu_{~~~¢\tilde{A}}( x_{i} ) |^{p} ~]^ \frac{1}{p}  ~~~~p=1,2,3...\)}\\
-%~\\
-%\raggedright Let S ~=~supp($\tilde{A}$): $D_{p}$(S, ¢S) =~$\|S\|^\frac{1}{p}$\\
-%~\\
-%\end{block}
-%
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%
-%\begin{block}{Definition 4-5[Yager 1979](1/2)}
-%~\\
-%~\\
-%A measure of the fuzziness of $\tilde{A}$ can be defined as\\
-%~\\
-%\centering\textbf{$f_{p}(\tilde{A})$ = 1 - $\frac{D_{p}(\tilde{A},~~~¢\tilde{A})}{\|supp(\tilde{A})\|}$}\\
-%~\\
-%\raggedright So $f_{p}$($\tilde{A}$) $\in$ [0, 1]. This measure also satisfies properties 1 to 4 required by de Luca and Termini (see above).\\
-%~\\
-%~\\
-%\end{block}
-%
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%
-%\begin{block}{Definition 4-5[Yager 1979](2/2)}
-%~\\
-%~\\
-%For p = 1, $D_{p}$($\tilde{A}$, ¢$\tilde{A}$) yields \textbf{the Hamming metric}\\
-%~\\
-%\centering\textbf{$D_{1}(\tilde{A},~~¢\tilde{A})$ = $\sum_{i=1}^n |\mu_{\tilde{A}}( x_{i})- \mu_{~~~¢\tilde{A}}( x_{i} )| $}\\
-%~\\
-%\raggedright Because $\mu_{\textbf{¢}\tilde{A}}( x) = 1 - \mu_{\tilde{A}}( x)$, this becomes\\
-%~\\
-%\centering\textbf{$D_{1}(\tilde{A},~~¢\tilde{A})$ = $\sum_{i=1}^n |2\mu_{\tilde{A}}( x_{i})- 1| $}\\
-%~\\
-%\raggedright For p = 2, we arrive at \textbf{the Euclidean metric}\\
-%~\\
-%\centering\textbf{$D_{2}(\tilde{A},~~¢\tilde{A})$ = $(\sum_{i=1}^n (\mu_{\tilde{A}}( x_{i})- \mu_{~~~¢\tilde{A}}( x_{i} ))^2 )^ \frac{1}{2} $}\\
-%~\\
-%\raggedright and for $\mu_{\textbf{¢}\tilde{A}}( x) = 1 - \mu_{\tilde{A}}( x)$, we have\\
-%~\\
-%\centering\textbf{$D_{2}(\tilde{A},~~¢\tilde{A})$ = $(\sum_{i=1}^n (2\mu_{\tilde{A}}( x_{i})- 1 ))^2 )^ \frac{1}{2} $}\\
-%~\\
-%\end{block}
-%
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%
-%\begin{block}{Example 4-3(1/2)}
-%~\\
-%Let $\tilde{A}$ = "integers close to 10" and\\
-%$\tilde{B}$ = "integers quite close to 10" be defined as in {\color{red}example 4-2.}\\
-%Applying the above derived formula, we compute for p = 1:\\
-%~\\
-%\centering\textbf{$D_{1}(\tilde{A},~~¢\tilde{A})$ =.8+0+.6+1+.6+0+.8}\\
-%\textbf{=3.8}\\
-%\centering\textbf{$\|supp(\tilde{A})\| = 7$}\\
-%\raggedright so $f_{1}(\tilde{A}) = 1 - \frac{3.8}{7}$ = {\color{red}0.457.}\\
-%~\\
-%Analogously,\\
-%\centering $D_{2}(\tilde{B},\textbf{¢}\tilde{B})$ = 4.6\\
-%\centering\textbf{$\|supp(\tilde{B})\| = 9$}\\
-%\raggedright so $f_{1}(\tilde{B}) = 1 - \frac{4.6}{9}$ = {\color{red}0.489.}\\
-%~\\
-%~\\
-%\end{block}
-%
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%
-%\begin{block}{Example 4-3(2/2)}
-%~\\
-%~\\
-%Similarly, for p = 2, we obtain\\
-%\centering $D_{2}(\tilde{A},\textbf{¢}\tilde{A})$ = 1.73\\
-%\centering\textbf{$\|supp(\tilde{A})\| = 2.65$}\\
-%\raggedright so $f_{2}(\tilde{A}) = 1 - \frac{1.73}{2.65}$ = {\color{red}0.347} ,and\\
-%~\\
-%\centering $D_{2}(\tilde{B},\textbf{¢}\tilde{B})$ = 1.78\\
-%\centering\textbf{$\|supp(\tilde{B})\| = 1$}\\
-%\raggedright so $f_{2}(\tilde{B}) = 1 - \frac{1.78}{3}$ = {\color{red}0.407.}\\
-%~\\
-%~\\
-%\end{block}
-%
-%\end{frame}
-%
-%%------------------------------------------------
-%%------------------------------------------------
-%
-%\begin{frame}
-%\frametitle{4.2 Measures of Fuzziness}
-%
-%\begin{itemize}
-%\item The reader should realize that {\color{red}the complement of a fuzzy set is not uniquely defined} [see Bellman and Giertz 1973; Dubois and Prade 1982a; Lowen 1978]. 
-%\item It is therefore not surprising that for other definitions of the complement and for other measures of distance, other measures of fuzziness will result, even though they all focus on the distinction between a fuzzy set and its complement [see, for example, Klir 1987, p. 141]. 
-%\item Those variations, as well as {\color{red}extension of measures of fuzziness to nonfinite supports, will not be considered here}; neither will the approaches that define fuzzy measures of fuzzy sets [Yager 1979].
-%
-%\end{itemize}
-%
-%\end{frame}
-%
-%%------------------------------------------------
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	
+	\begin{itemize}
+		\item One of the important features of the KEEL software tool is the availability of a complete package of statistical procedures, developed with the aim of providing to\textbf{ the researcher a suitable tool to contrast the results obtained in any experimental study performed }inside the KEEL environment.
+	\end{itemize}
+	
+	
+\end{frame}
 %------------------------------------------------
+\subsection{KEEL Statistical Tests}
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	
+	\begin{itemize}
+		\item Nowadays, the use of statistical tests \textbf{to improve the evaluation process of the performance of a new method }has become a widespread technique in the field of Data Mining [10, 19, 20]. 
+		\item Usually, they are employed inside the framework of any experimental analysis \textbf{to decide} when an algorithm is better than other one.
+		\item This task, which may not be trivial, has become necessary to confirm when a new proposed method \textbf{offers a significant improvement over the existing methods} for a given problem.
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	
+	\begin{itemize}
+		\item There exist two kinds of test: \textbf{parametric} and \textbf{non-parametric}, depending of the concrete type of data employed. 
+		\item As a general rule, a non-parametric test \textbf{is less restrictive than} a parametric one, although it is less robust than a parametric when data are well conditioned.
+		\\
+		\item Parametric tests have been commonly used in the analysis of experiments in DM.
+		\item Nonparametric tests can be employed in the analysis of experiments, providing to the researcher a practical tool to use when the previous assumptions can not be satisfied.
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	
+	\begin{itemize}
+		\item Table 1 shows the procedures existing in the KEEL statistical package. For each test, a reference and a brief description is given (an extended description can be found in the Statistical Inference in Computational Intelligence and Data Mining website and in the KEEL website  ).
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{center}
+		\includegraphics[width=1\linewidth]{./5.png}
+	\end{center}
+\end{frame}
+
+%------------------------------------------------
+\subsection{Case of study}
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	
+	\begin{itemize}
+		\item In this section, we present a case study as an example of the functionality and process of creating an experiment with the KEEL software tool.
+		\item This experimental study is focused on the comparison between the new algorithm imported (SGERD) and several evolutionary rule-based algorithms, and employs a set of supervised classification domains available in KEEL-dataset.
+		\item Several statistical procedures available in the KEEL software tool will be employed to contrast the results obtained.
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	\textbf{Algorithms and classification problems}
+	
+	\begin{itemize}
+		\item \textbf{Five representative evolutionary rule learning methods} have been selected to carry out the experimental study: Ant-Miner, CO-Evolutionary Rule Extractor (CORE), HIerarchical DEcision Rules (HIDER), Steady-State Genetic Algorithm for Extracting Fuzzy Classification Rules From Data (SGERD) and \textbf{Tree Analysis }with Randomly Generated and Evolved Trees (TARGET) methodology.
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{center}
+		\includegraphics[width=1\linewidth]{./6.png}
+	\end{center}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{center}
+		\includegraphics[width=.9\linewidth]{./7.png}
+	\end{center}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	\textbf{Setting up the Experiment under KEEL software}
+	
+	\begin{itemize}
+		\item The graph in Figure 6 represents the flow of data and results from the algorithms and statistical techniques. 
+		\item A node can represent an initial data flow (group of data sets), a pre-process/post-process algorithm, a learning method, test or a visualization of results module. 
+		\item They can be distinguished easily by the color of the node. 
+		\item All their parameters can be adjusted by clicking twice on the node. 
+		\item Notice that KEEL incorporates the option of configuring the number of runs for each probabilistic algorithm, including this option in the configuration dialog of each node (3 in this case study).
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{center}
+		\includegraphics[width=.7\linewidth]{./8.png}
+	\end{center}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{itemize}
+		\item Table 4 shows the parameter’s values selected for the algorithms employed in this experiment (they have been taken from their respective papers following the indications given by the authors).
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{center}
+		\includegraphics[width=1\linewidth]{./9.png}
+	\end{center}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	\textbf{Results and Analysis}
+	
+	\begin{itemize}
+		\item This subsection describes and discusses the results obtained from the previous experiment configuration.
+		\item Tables 5 and 6 show the results obtained in training and test stages, respectively. 
+		\item For each data set, the average and standard deviations in accuracy obtained by the module Vis-Clas-Tabular are shown, with the best results stressed in \textbf{boldface}.
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{center}
+		\includegraphics[width=.65\linewidth]{./10.png}
+	\end{center}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{center}
+		\includegraphics[width=.6\linewidth]{./11.png}
+	\end{center}
+\end{frame}
+
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+
+	
+	\begin{itemize}
+		\item Focusing on the test results, the average accuracy obtained by \textbf{Hider} is the highest one.
+		\item However, this estimator does not reflect whether or not the differences among the methods are significant. 
+		\item For this reason, we have carried out an statistical analysis based on multiple comparison procedures (see Appendix B for a full description), by including a node called Stat-Clas- Friedman in the KEEL experiment.
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{center}
+		\includegraphics[width=1\linewidth]{./12.png}
+	\end{center}
+\end{frame}
+
+%------------------------------------------------%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	
+	\begin{center}
+		\includegraphics[width=1\linewidth]{./13.png}
+	\end{center}
+\end{frame}
+
+%------------------------------------------------
+\section{CONCLUDING REMARKS} 
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+
+	\begin{itemize}
+		\item In this case, the results obtained have been contrasted through a statistical analysis following the indications given in [18], concluding that the Hider method is the best performing method when compared with the remaining methods analyzed in this study.
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\insertsection : \insertsubsection}
+	The objective of this paper was to present three new aspects of KEEL:
+	
+	\begin{itemize}
+		\item KEEL-dataset, a data set repository that includes the data set partitions in the KEEL format and shows some results obtained in these data sets.
+		\item Some basic guidelines that the developer may take into account to facilitate the implementation and integration of new approaches within the KEEL software tool. 
+		\item A module of statistical procedures which let researchers contrast the results obtained in any experimental study using statistical tests. This task, which may not be trivial, has become necessary to confirm when a new proposed method offers a significant i\textbf{mprovement over the existing methods} for a given problem.
+	\end{itemize}
+	
+	
+\end{frame}
+%------------------------------------------------
+
+
 \begin{frame}
 \Huge{\centerline{Thank you for your attention}}
 \end{frame}
